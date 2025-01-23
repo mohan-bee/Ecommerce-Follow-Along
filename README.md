@@ -96,3 +96,8 @@ Styling: Styled the Signup.jsx using Basic Css with the help of styled component
 
 Encryption: Encrypted the Password in userController.js and stored in the Database using bcryptjs
 Decryption: Using the compare function in bcrypt, Compared the actual password with the hashed password
+
+## Milestone 8
+
+**Styling**: Create A Reusuable Card Component using React with the basic css
+**Reusuable**: Reused the Card Components for n times in the Card Container
