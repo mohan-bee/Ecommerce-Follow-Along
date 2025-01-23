@@ -86,3 +86,8 @@ Database Integration: Established a successful connection to the database using 
 User Model: Created a basic user model with necessary feilds
 User Controller: Created a POST method for '/sign-up' route and implemented the User Creation
 Multer: Configured Multer's designation and filename and make uploads folder access available.
+
+## Milestone 5
+
+SignUp Implementation: Created a Basic Sign up page using react and made a post request using axios to the backend
+Styling: Styled the Signup.jsx using Basic Css with the help of styled components
