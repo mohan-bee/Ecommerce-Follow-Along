@@ -70,3 +70,13 @@ This **E-Commerce Application** provides essential features for an online store,
 -  added a Readme.md about the project
 -  This is basically a ecommerce project where user can make purchases 
 
+## Milestone 2
+- Organized the project into separate folders for the frontend and backend to ensure a clear separation of concerns and ease of development.
+- Initialized the frontend application using React with Vite for a faster and more optimized development experience.
+- Designed and implemented a basic login page for the application. Utilized Basic css not Tailwindcss
+
+## Milestone 3
+
+Environment Setup: Initialized the backend and installed all required dependencies.
+Server Implementation: Developed server functionality using Express and incorporated an error handler for robust exception management.
+Database Integration: Established a successful connection to the database using Mongoose.
