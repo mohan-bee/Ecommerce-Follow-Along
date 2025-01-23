@@ -70,3 +70,29 @@ This **E-Commerce Application** provides essential features for an online store,
 -  added a Readme.md about the project
 -  This is basically a ecommerce project where user can make purchases 
 
+## Milestone 2
+- Organized the project into separate folders for the frontend and backend to ensure a clear separation of concerns and ease of development.
+- Initialized the frontend application using React with Vite for a faster and more optimized development experience.
+- Designed and implemented a basic login page for the application. Utilized Basic css not Tailwindcss
+
+## Milestone 3
+
+Environment Setup: Initialized the backend and installed all required dependencies.
+Server Implementation: Developed server functionality using Express and incorporated an error handler for robust exception management.
+Database Integration: Established a successful connection to the database using Mongoose.
+
+## Milestone 4
+
+User Model: Created a basic user model with necessary feilds
+User Controller: Created a POST method for '/sign-up' route and implemented the User Creation
+Multer: Configured Multer's designation and filename and make uploads folder access available.
+
+## Milestone 5
+
+SignUp Implementation: Created a Basic Sign up page using react and made a post request using axios to the backend
+Styling: Styled the Signup.jsx using Basic Css with the help of styled components
+
+## Milestone 6 & 7
+
+Encryption: Encrypted the Password in userController.js and stored in the Database using bcryptjs
+Decryption: Using the compare function in bcrypt, Compared the actual password with the hashed password
