@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const { upload } = require('../config/multer')
-const User = require('../modals/User')
+const User = require('../models/User')
 const bcrypt = require('bcryptjs')
 
 router.post('/create-user', upload.single('file'), async (req, res) =>{
