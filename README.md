@@ -80,3 +80,9 @@ This **E-Commerce Application** provides essential features for an online store,
 Environment Setup: Initialized the backend and installed all required dependencies.
 Server Implementation: Developed server functionality using Express and incorporated an error handler for robust exception management.
 Database Integration: Established a successful connection to the database using Mongoose.
+
+## Milestone 4
+
+User Model: Created a basic user model with necessary feilds
+User Controller: Created a POST method for '/sign-up' route and implemented the User Creation
+Multer: Configured Multer's designation and filename and make uploads folder access available.
