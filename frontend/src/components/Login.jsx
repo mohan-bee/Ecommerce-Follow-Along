@@ -1,15 +1,31 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 
 const Login = () => {
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');    
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate()
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const res = await axios.post('http://localhost:3000/api/auth/login', {email, password});
+            console.log(res.data);
+            alert('User Login successfully!');
+            navigate('/')
+        } catch (error) {
+            console.error(error);
+            alert('An error occurred while submitting the form.');
+        }
+    };
 
     return (
         <FormContainer>
-            <Form >
+            <Form onSubmit={handleSubmit}>
                 <Title>Login</Title>
                 <Label>Email:</Label>
                 <Input
