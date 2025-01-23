@@ -58,7 +58,7 @@ Key features include:
   - **JWT (JSON Web Token)**: Used for secure login, registration, and token-based authentication.
   
 - **Styling**:  
-  - **CSS** (for basic styling) or **Tailwind CSS** (optional, if you want a utility-first framework).
+  - **CSS** (for basic styling).
 
 ---
 
