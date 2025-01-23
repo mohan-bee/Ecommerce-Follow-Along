@@ -91,3 +91,8 @@ Multer: Configured Multer's designation and filename and make uploads folder acc
 
 SignUp Implementation: Created a Basic Sign up page using react and made a post request using axios to the backend
 Styling: Styled the Signup.jsx using Basic Css with the help of styled components
+
+## Milestone 6 & 7
+
+Encryption: Encrypted the Password in userController.js and stored in the Database using bcryptjs
+Decryption: Using the compare function in bcrypt, Compared the actual password with the hashed password
