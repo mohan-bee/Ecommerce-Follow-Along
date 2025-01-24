@@ -1,9 +1,8 @@
-const router = require('express').Router()
 const { upload } = require('../config/multer')
 const User = require('../models/User')
 const bcrypt = require('bcryptjs')
 
-router.post('/create-user', upload.single('file'), async (req, res) =>{
+const signup =  async (req, res) =>{
     try {
     const {name, email, password} = req.body
     const file = req.file
@@ -31,9 +30,9 @@ router.post('/create-user', upload.single('file'), async (req, res) =>{
         res.status(400).send(error.message)
         console.log(error.message)
     }
-})
+}
 
-router.post('/login', async (req, res) => {
+ const login = async (req, res) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
@@ -64,7 +63,7 @@ router.post('/login', async (req, res) => {
         console.error("Login Error:", error);
         return res.status(500).send("An error occurred during login. Please try again later.");
     }
-});
+}
 
 
-module.exports = router
+module.exports = {signup, login}
