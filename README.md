@@ -101,3 +101,8 @@ Decryption: Using the compare function in bcrypt, Compared the actual password w
 
 **Styling**: Create A Reusuable Card Component using React with the basic css
 **Reusuable**: Reused the Card Components for n times in the Card Container
+
+## Milestone 9
+
+**Form**: Created A Basic Product Form using Basic CSS in React and made to form to handle multiple images
+**Backend**: Created a Basic Product Model and Routes for Creating, Updating and Deleting using express router , Handled all the images using multer and saved in uploads folder for future use.
