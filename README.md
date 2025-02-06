@@ -116,19 +116,21 @@ Decryption: Using the compare function in bcrypt, Compared the actual password w
 
 ## Milestone 10
 
-**Schema Creation**: Created a Structured Product Schema with necessary fields and data types\
-**Endpoint Creation**: Created Enought endpoints to make operation with the Product data\
-**Endpoints**: 
+**Schema Creation**: Created a Structured Product Schema with necessary fields and data types \
+**Endpoint Creation**: Created Enought endpoints to make operation with the Product data \
+**Endpoints**:
 
-POST `/api/products`
-GET `/api/products`
-GET `/api/products/:id`
-PUT `/api/products/:id`
-DELETE `/api/products/:id`
+POST `/api/products`\
+GET `/api/products`\
+GET `/api/products/:id`\
+PUT `/api/products/:id`\
 
-
-## Milestone 11
 
 **Data from Server**: Created an GET request to send data from the mongodb to the client\
 **Dynamically Displaying**: Receiving the Data from the frontend using axios and displaying card dynamically.
+
+## Milestone 12
+
+**Backend**: I created an API endpoint in Node.js with Express to fetch products from MongoDB based on the logged-in user's email.\
+**Frontend**: I wrote a function to retrieve this data and dynamically display it using the existing product card component.
 
