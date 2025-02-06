@@ -125,3 +125,9 @@ GET `/api/products`
 GET `/api/products/:id`
 PUT `/api/products/:id`
 DELETE `/api/products/:id`
+
+
+## Milestone 11
+
+**Data from Server**: Created an GET request to send data from the mongodb to the client\
+**Dynamically Displaying**: Receiving the Data from the frontend using axios and displaying card dynamically.
