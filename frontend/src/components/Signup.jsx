@@ -33,7 +33,7 @@ const Signup = () => {
         formData.append('file', avatar);
 
         try {
-            const res = await axios.post('http://localhost:3000/api/auth/create-user', formData);
+            const res = await axios.post('http://localhost:3000/api/auth/signup', formData);
             console.log(res.data);
             alert('User created successfully!');
             navigate('/login')

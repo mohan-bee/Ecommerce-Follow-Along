@@ -1,21 +1,21 @@
-const { upload } = require('../config/multer')
+
 const User = require('../models/User')
 const bcrypt = require('bcryptjs')
 
 const signup =  async (req, res) =>{
     try {
     const {name, email, password} = req.body
-    const file = req.file
+    // const file = req.file
     const hashedPassword = await bcrypt.hash(password, 10)
     const existingUser = await User.findOne({email})
-    console.log(file)
+
     const newUser = User({
         name, 
         email,
         password: hashedPassword,
         avatar: {
             public_id: name,
-            url: file.filename
+            // url: file.filename
         }
        
     })
