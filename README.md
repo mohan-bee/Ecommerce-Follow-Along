@@ -9,6 +9,7 @@ This is a full-stack e-commerce web application built with **Node.js**, **Expres
 The **E-Commerce Application** is designed to simulate the key functionalities of a modern online store. Users can view products, add them to their cart, and place orders. Authentication and authorization are handled via **JWT tokens**, ensuring secure user sessions. The project is divided into a **backend** powered by **Node.js** and **Express** for handling API requests, and a **frontend** built with **React** for a dynamic, user-friendly interface.
 
 Key features include:
+
 - **User Authentication**: Users can register, log in, and access their profile securely using JWT-based authentication.
 - **Product Management**: Admins can add, update, and delete products from the catalog. Users can browse and view products by category, price, and other criteria.
 - **Shopping Cart**: Users can add products to their cart, modify quantities, and remove items before placing an order.
@@ -19,45 +20,50 @@ Key features include:
 
 ## Key Features
 
-- **User Authentication**: 
+- **User Authentication**:
+
   - Secure login and registration using JWT tokens for user authentication.
   - User profile management, including password updates.
 
-- **Product Management**: 
+- **Product Management**:
+
   - Users can view and filter products by category, price, and ratings.
   - Admin users can add, update, or delete products.
 
-- **Shopping Cart**: 
+- **Shopping Cart**:
+
   - Add products to the cart, update quantities, and proceed to checkout.
   - Real-time updates to cart total, including taxes and shipping costs.
 
-- **Order Management**: 
+- **Order Management**:
+
   - Place orders and view order details.
   - Admins can view all orders, update their statuses, and track progress.
 
-- **Admin Dashboard**: 
+- **Admin Dashboard**:
   - Access to an administrative dashboard for managing users, products, and orders.
 
 ---
 
 ## Tech Stack
 
-- **Frontend**:  
-  - **React**: A JavaScript library for building user interfaces.  
+- **Frontend**:
+
+  - **React**: A JavaScript library for building user interfaces.
   - **React Router**: For routing between different pages.
   - **Axios**: For making API requests from the frontend to the backend.
 
-- **Backend**:  
-  - **Node.js**: JavaScript runtime for building the server.  
+- **Backend**:
+
+  - **Node.js**: JavaScript runtime for building the server.
   - **Express**: Web framework for Node.js to handle routing and middleware.
   - **MongoDB**: NoSQL database to store user data, products, and orders.
   - **Mongoose**: ODM (Object Data Modeling) library to interact with MongoDB.
   - **JWT (JSON Web Token)**: For securing user authentication and authorization.
 
-- **Authentication**:  
+- **Authentication**:
   - **JWT (JSON Web Token)**: Used for secure login, registration, and token-based authentication.
-  
-- **Styling**:  
+- **Styling**:
   - **CSS** (for basic styling).
 
 ---
@@ -66,11 +72,12 @@ This **E-Commerce Application** provides essential features for an online store,
 
 ## Milestone 1
 
--  Create a new repository and integrated with vs-code
--  added a Readme.md about the project
--  This is basically a ecommerce project where user can make purchases 
+- Create a new repository and integrated with vs-code
+- added a Readme.md about the project
+- This is basically a ecommerce project where user can make purchases
 
 ## Milestone 2
+
 - Organized the project into separate folders for the frontend and backend to ensure a clear separation of concerns and ease of development.
 - Initialized the frontend application using React with Vite for a faster and more optimized development experience.
 - Designed and implemented a basic login page for the application. Utilized Basic css not Tailwindcss
@@ -106,3 +113,15 @@ Decryption: Using the compare function in bcrypt, Compared the actual password w
 
 **Form**: Created A Basic Product Form using Basic CSS in React and made to form to handle multiple images
 **Backend**: Created a Basic Product Model and Routes for Creating, Updating and Deleting using express router , Handled all the images using multer and saved in uploads folder for future use.
+
+## Milestone 10
+
+**Schema Creation**: Created a Structured Product Schema with necessary fields and data types \n
+**Endpoint Creation**: Created Enought endpoints to make operation with the Product data \n
+**Endpoints**: 
+
+POST `/api/products`
+GET `/api/products`
+GET `/api/products/:id`
+PUT `/api/products/:id`
+DELETE `/api/products/:id`
