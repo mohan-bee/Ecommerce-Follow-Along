@@ -120,8 +120,15 @@ Decryption: Using the compare function in bcrypt, Compared the actual password w
 **Endpoint Creation**: Created Enought endpoints to make operation with the Product data\
 **Endpoints**: 
 
-POST `/api/products`\
-GET `/api/products`\
-GET `/api/products/:id`\
-PUT `/api/products/:id`\ 
-DELETE `/api/products/:id`\
+POST `/api/products`
+GET `/api/products`
+GET `/api/products/:id`
+PUT `/api/products/:id`
+DELETE `/api/products/:id`
+
+
+## Milestone 11
+
+**Data from Server**: Created an GET request to send data from the mongodb to the client\
+**Dynamically Displaying**: Receiving the Data from the frontend using axios and displaying card dynamically.
+
