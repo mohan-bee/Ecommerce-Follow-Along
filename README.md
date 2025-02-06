@@ -116,8 +116,8 @@ Decryption: Using the compare function in bcrypt, Compared the actual password w
 
 ## Milestone 10
 
-**Schema Creation**: Created a Structured Product Schema with necessary fields and data types \n
-**Endpoint Creation**: Created Enought endpoints to make operation with the Product data \n
+**Schema Creation**: Created a Structured Product Schema with necessary fields and data types\
+**Endpoint Creation**: Created Enought endpoints to make operation with the Product data\
 **Endpoints**: 
 
 POST `/api/products`
@@ -131,3 +131,4 @@ DELETE `/api/products/:id`
 
 **Data from Server**: Created an GET request to send data from the mongodb to the client\
 **Dynamically Displaying**: Receiving the Data from the frontend using axios and displaying card dynamically.
+
