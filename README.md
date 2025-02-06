@@ -124,9 +124,7 @@ POST `/api/products`\
 GET `/api/products`\
 GET `/api/products/:id`\
 PUT `/api/products/:id`\
-DELETE `/api/products/:id`
 
-## Milestone 11
 
 **Data from Server**: Created an GET request to send data from the mongodb to the client\
 **Dynamically Displaying**: Receiving the Data from the frontend using axios and displaying card dynamically.
@@ -135,3 +133,4 @@ DELETE `/api/products/:id`
 
 **Backend**: I created an API endpoint in Node.js with Express to fetch products from MongoDB based on the logged-in user's email.\
 **Frontend**: I wrote a function to retrieve this data and dynamically display it using the existing product card component.
+
