@@ -45,6 +45,20 @@ const getAllProducts = async (req, res) => {
     }
 };
 
+const myProducts = async (req,res) =>{
+    try {
+        const {email} = req.query 
+        const products = await Product.find({email});
+        if (!products) {
+            return res.status(404).json({ message: "Products Not Found" });
+        }
+        return res.status(200).json({ message: "Products Found Successfully", data: products });
+    } catch (error) {
+        console.log(error.message);
+        return res.status(500).json({ message: "Internal Server Error", description: error.message });
+    }
+}
+
 const updateProduct = async (req, res) => {
     try {
         const id = req.params.id;
@@ -73,4 +87,4 @@ const deleteProduct = async (req, res) => {
     }
 };
 
-module.exports = { createProduct, getProductById, getAllProducts, updateProduct, deleteProduct };
+module.exports = { createProduct, getProductById, getAllProducts, updateProduct, deleteProduct,myProducts };
