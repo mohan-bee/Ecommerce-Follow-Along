@@ -11,7 +11,7 @@ const CreateProduct = () => {
   const [tags, setTags] = useState("");
   const [price, setPrice] = useState("");
   const [stock, setStock] = useState("");
-
+  const [email, setEmail] = useState('')
   const categories = ["Electronics", "Fashion", "Books", "Home Appliances"];
 
   const handleImagesChange = (e) => {
@@ -23,6 +23,7 @@ const CreateProduct = () => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('name', name);
+    formData.append('email', email);
     formData.append('description', description);
     formData.append('category', category);
     formData.append('tags', tags);
@@ -46,6 +47,7 @@ const CreateProduct = () => {
       setTags("");
       setPrice("");
       setStock("");
+      setEmail("")
     } catch (error) {
       console.error("Error creating product: ", error);
       alert("Failed to create product");
@@ -57,6 +59,7 @@ const CreateProduct = () => {
       <h2>Create Product</h2>
       <form onSubmit={handleSubmit}>
         <Input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Product Name" required />
+        <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="User Email" required />
         <Textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Description" rows="4" required />
         <Select value={category} onChange={(e) => setCategory(e.target.value)} required>
           <option value="">Select Category</option>

@@ -10,6 +10,7 @@ const Signup = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [avatar, setAvatar] = useState(null);
+    
     const navigate = useNavigate()
 
     const handleFilename = (e) => {
