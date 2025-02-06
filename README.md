@@ -116,12 +116,12 @@ Decryption: Using the compare function in bcrypt, Compared the actual password w
 
 ## Milestone 10
 
-**Schema Creation**: Created a Structured Product Schema with necessary fields and data types \n
-**Endpoint Creation**: Created Enought endpoints to make operation with the Product data \n
+**Schema Creation**: Created a Structured Product Schema with necessary fields and data types \
+**Endpoint Creation**: Created Enought endpoints to make operation with the Product data \
 **Endpoints**: 
 
-POST `/api/products`
-GET `/api/products`
-GET `/api/products/:id`
-PUT `/api/products/:id`
-DELETE `/api/products/:id`
+POST `/api/products` \
+GET `/api/products` \
+GET `/api/products/:id` \
+PUT `/api/products/:id` \ 
+DELETE `/api/products/:id` \
