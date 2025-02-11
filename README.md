@@ -142,3 +142,8 @@ PUT `/api/products/:id`\
 
 **Backend**: Already create a endpoint to Delete the product.\
 **Frontend**: Added Delete button on clicking the delete button it will make a delete request to `/api/products/:id` which will delete the product from the database
+
+## Milestone 15
+
+**Navigation Bar**: Create a Navigation bar with home, add products,my products, cart and added necessary redirect Link
+**Responsive**: Created a Responsive navigation bar making hamburger style navbar for mobile devices.
