@@ -9,10 +9,14 @@
   color: var(--font-color);
 }
 :root{
-  --background-color: #FFFAEC;
-  --secondary-color: #F5ECD5;
-  --primary-color: #578E7E;
-  --font-color: #3D3D3D;
+  --background-color: #FFFAEC;  
+  --secondary-color: #F5ECD5;   
+  --primary-color: #578E7E;     
+  --accent-color: #E26A2C;      
+  --font-color: #3D3D3D;        
+  --hover-color: #466E65;       
+  --border-color: #D4C9B1;      
+  --light-text: #7A7A7A;        
 }
 body{
   background-color: #FFFAEC;
