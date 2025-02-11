@@ -134,3 +134,9 @@ PUT `/api/products/:id`\
 **Backend**: I created an API endpoint in Node.js with Express to fetch products from MongoDB based on the logged-in user's email.\
 **Frontend**: I wrote a function to retrieve this data and dynamically display it using the existing product card component.
 
+## Milestone 13
+
+**Backend**: Already create a endpoint to update the product details.\
+**Frontend**: Added Edit button on clicking the edit button it will redirect to a form with details filled automatically using location from `react-router-dom` made a put request to PUT `/api/products/:id` this endpoint.
+
+
