@@ -1,11 +1,11 @@
-
 const User = require('../models/User')
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 
 const signup =  async (req, res) =>{
     try {
     const {name, email, password} = req.body
-    // const file = req.file
+    const file = req.file
     const hashedPassword = await bcrypt.hash(password, 10)
     const existingUser = await User.findOne({email})
 
@@ -15,7 +15,7 @@ const signup =  async (req, res) =>{
         password: hashedPassword,
         avatar: {
             public_id: name,
-            // url: file.filename
+            url: file.filename
         }
        
     })
@@ -36,7 +36,7 @@ const signup =  async (req, res) =>{
     const { email, password } = req.body;
 
     if (!email || !password) {
-        return res.status(400).send("Email and password are required.");
+        return res.status(400).json({ success: false, msg: "Email and password are required." });
     }
 
     try {
@@ -45,23 +45,26 @@ const signup =  async (req, res) =>{
         const user = await User.findOne({ email }).select("+password");
         if (!user) {
             console.log("User not found for email:", email);
-            return res.status(404).send("Invalid email or password."); 
+            return res.status(404).json({ success: false, msg: "Invalid email or password." });
         }
 
         console.log("User found:", user);
-
+        
         const isAuthorisedUser = await bcrypt.compare(password, user.password);
         if (!isAuthorisedUser) {
             console.log("Password mismatch for email:", email);
-            return res.status(401).send("Invalid email or password."); 
+            return res.status(401).json({ success: false, msg: "Invalid email or password." });
         }
-
+        const token = await jwt.sign({_id: user._id, email: user.email},
+            "secret",
+            {expiresIn: "1h"}
+        )
         console.log("User logged in successfully:", email);
-        return res.status(200).send("Login Successful");
+        return res.status(200).json({success: true, msg: "User Logged In Sucessfully", token, user});
 
     } catch (error) {
         console.error("Login Error:", error);
-        return res.status(500).send("An error occurred during login. Please try again later.");
+        return res.status(500).json({ success: false, msg: "An error occurred during login. Please try again later." });
     }
 }
 

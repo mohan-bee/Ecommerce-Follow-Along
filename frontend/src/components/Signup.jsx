@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import Navbar from './Navbar';
 
 
 
@@ -45,7 +46,9 @@ const Signup = () => {
     };
 
     return (
-        <FormContainer>
+       <div>
+        <Navbar />
+         <FormContainer>
             <Form onSubmit={handleSubmit}>
                 <Title>Sign Up</Title>
                 <Label>Name:</Label>
@@ -77,6 +80,7 @@ const Signup = () => {
                 <Button type="submit">Submit</Button>
             </Form>
         </FormContainer>
+       </div>
     );
 };
     

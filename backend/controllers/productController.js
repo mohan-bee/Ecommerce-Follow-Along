@@ -2,9 +2,12 @@ const Product = require('../models/Product');
 
 const createProduct = async (req, res) => {
     try {
+        console.log("Request body:", req.body);
+        console.log("Request files:", req.files);
+
         const { name, description, category, tags, price, stock, email } = req.body;
         const images = req.files.map(file => file.filename);
-        const newProduct = new Product({ name,email, description, category, tags, price, stock, images });
+        const newProduct = new Product({ name, email, description, category, tags, price, stock, images });
 
         await newProduct.save();
         if (!newProduct) {
@@ -45,28 +48,25 @@ const getAllProducts = async (req, res) => {
     }
 };
 
-const myProducts = async (req,res) =>{
-    try {
-        const {email} = req.query 
-        const products = await Product.find({email});
-        if (!products) {
-            return res.status(404).json({ message: "Products Not Found" });
-        }
-        return res.status(200).json({ message: "Products Found Successfully", data: products });
-    } catch (error) {
-        console.log(error.message);
-        return res.status(500).json({ message: "Internal Server Error", description: error.message });
-    }
-}
-
 const updateProduct = async (req, res) => {
     try {
         const id = req.params.id;
-        const product = await Product.findByIdAndUpdate(id, req.body, { new: true });
-        if (!product) {
+        const { name, description, category, tags, price, stock, email } = req.body;
+        let images = req.files.map(file => file.filename);
+
+        const existingProduct = await Product.findById(id);
+        if (!existingProduct) {
             return res.status(404).json({ message: "Product Not Found" });
         }
-        return res.status(200).json({ message: "Product Updated Successfully", data: product });
+        if (images.length === 0) {
+            images = existingProduct.images;
+        }
+        const updatedProduct = await Product.findByIdAndUpdate(id, 
+            { name, email, description, category, tags, price, stock, images }, 
+            { new: true }
+        );
+
+        return res.status(200).json({ message: "Product Updated Successfully", data: updatedProduct });
     } catch (error) {
         console.log(error.message);
         return res.status(500).json({ message: "Internal Server Error", description: error.message });
@@ -87,4 +87,4 @@ const deleteProduct = async (req, res) => {
     }
 };
 
-module.exports = { createProduct, getProductById, getAllProducts, updateProduct, deleteProduct,myProducts };
+module.exports = { createProduct, getProductById, getAllProducts, updateProduct, deleteProduct };
