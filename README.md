@@ -147,5 +147,5 @@ PUT `/api/products/:id`\
 
 ## Milestone 15
 
-**Navigation Bar**: Create a Navigation bar with home, add products,my products, cart and added necessary redirect Link
+**Navigation Bar**: Create a Navigation bar with home, add products,my products, cart and added necessary redirect Link\
 **Responsive**: Created a Responsive navigation bar making hamburger style navbar for mobile devices.
