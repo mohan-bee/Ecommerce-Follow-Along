@@ -1,23 +1,49 @@
 import React from 'react';
 import styled from 'styled-components';
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
 
-const Card = () => {
+const Card = ({ product, isEdit, isDelete}) => {
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token")
+  const handleEdit = () => {
+    navigate('/edit', {
+      state: product,
+    });
+  };
+
+  const handleDelete = async  () =>{
+    try {
+      let res = await axios.delete(`http://localhost:3000/api/products/${product._id}`, {
+        headers: {
+          Authorization: "Bearer " + token
+        }
+      })
+      alert(res.data.message)
+    } catch (error) {
+      console.error("Server Error", error.message)
+    }
+  }
+
   return (
     <StyledCard>
       <img
-        src="https://m.media-amazon.com/images/I/614aiM56siL._SL1500_.jpg"
+        src={`http://localhost:3000/uploads/${product.images[0]}`}
         alt="Product"
         className="cover"
       />
-      <h1 className="title">Name of the Product</h1>
-      <p className="desc">Description of the product and it is not sure now</p>
-      <p className="price">$ 400</p>
-      <button className="primary btn">Buy Now</button>
+      <h1 className="title">{product.name}</h1>
+      <p className="desc">{product.description}</p>
+      <p className="price">$ {product.price}</p>
+      {!isEdit && <button className="primary btn">Add to Cart</button>}
+      {isEdit && <button onClick={handleEdit} className="primary btn">Edit</button>}
+      {isDelete && <button onClick={handleDelete} className="primary btn del">Delete</button>}
     </StyledCard>
   );
 };
 
 const StyledCard = styled.div`
+  position: relative;
   width: 300px;
   border-radius: 10px;
   overflow: hidden;
@@ -69,6 +95,30 @@ const StyledCard = styled.div`
       background-color: #467968; 
     }
   }
+  .primary.btn.del {
+    background-color: #d73d3d;
+    color: var(--background-color);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 20px 0;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #467968; 
+    }
+  }
+`;
+
+const EditIcon = styled.div`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  color: var(--primary-color);
+  cursor: pointer;
 `;
 
 export default Card;

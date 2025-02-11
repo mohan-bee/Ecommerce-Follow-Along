@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import Navbar from './Navbar';
 
 
 const Login = () => {
@@ -15,6 +16,8 @@ const Login = () => {
         try {
             const res = await axios.post('http://localhost:3000/api/auth/login', {email, password});
             console.log(res.data);
+            localStorage.setItem("token", res.data.token)
+            localStorage.setItem("email", res.data.user.email)
             alert('User Login successfully!');
             navigate('/')
         } catch (error) {
@@ -24,7 +27,9 @@ const Login = () => {
     };
 
     return (
-        <FormContainer>
+        <div>
+            <Navbar />
+            <FormContainer>
             <Form onSubmit={handleSubmit}>
                 <Title>Login</Title>
                 <Label>Email:</Label>
@@ -46,6 +51,7 @@ const Login = () => {
                 <Button type="submit">Submit</Button>
             </Form>
         </FormContainer>
+        </div>
     );
 };
 const FormContainer = styled.div`

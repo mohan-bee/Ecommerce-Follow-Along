@@ -1,12 +1,14 @@
-import {useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import axios from 'axios';
 import Navbar from "./Navbar";
+import { useLocation } from "react-router-dom";
 
-const CreateProduct = () => {
-
+const EditProduct = () => {
+  const location = useLocation();
   const [images, setImages] = useState([]);
+  const [existingImages, setExistingImages] = useState([]);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
@@ -22,7 +24,20 @@ const CreateProduct = () => {
     setImages(prev => [...prev, ...files]);
   };
 
-  
+  useEffect(() => {
+    if (location.state) {
+      setName(location.state.name);
+      setDescription(location.state.description);
+      setPrice(location.state.price);
+      setStock(location.state.stock);
+      setCategory(location.state.category);
+      setTags(location.state.tags);
+
+      if (Array.isArray(location.state.images)) {
+        setImages(location.state.images);
+      }
+    }
+  }, [location.state]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,7 +52,7 @@ const CreateProduct = () => {
     images.forEach(image => formData.append('images', image));
 
     try {
-      let res = await axios.post('http://localhost:3000/api/products', formData, {
+      let res = await axios.put('http://localhost:3000/api/products/'+location.state._id, formData, {
         headers: {
           "Content-Type": 'multipart/form-data',
           "Authorization": "Bearer " + token
@@ -54,8 +69,8 @@ const CreateProduct = () => {
       setPrice("");
       setStock("");
     } catch (error) {
-      console.error("Error creating product: ", error);
-      alert("Failed to create product");
+      console.error("Error updating product: ", error);
+      alert("Failed to update product");
     }
   };
 
@@ -63,7 +78,7 @@ const CreateProduct = () => {
     <div>
       <Navbar />
       <Container>
-        <h2>Create Product</h2>
+        <h2>Edit Product</h2>
         <form onSubmit={handleSubmit}>
           <Input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Product Name" required />
           <Textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Description" rows="4" required />
@@ -80,14 +95,17 @@ const CreateProduct = () => {
             <label htmlFor="upload">
               <AiOutlinePlusCircle size={30} />
             </label>
-            <input type="file" id="upload" multiple onChange={handleImagesChange} hidden required />
+            <input type="file" id="upload" multiple onChange={handleImagesChange} hidden />
           </FileUpload>
           <ImagePreview>
             {images.map((img, index) => (
-              <img key={index} src={URL.createObjectURL(img)} alt="Preview" />
+              <img key={index} src={`http://localhost:3000/uploads/${img}`} alt="Existing Product" />
+            ))}
+            {images.map((img, index) => (
+              img instanceof File ? <img key={index} src={URL.createObjectURL(img)} alt="Preview" /> : null
             ))}
           </ImagePreview>
-          <Button type="submit">Create</Button>
+          <Button type="submit">Update</Button>
         </form>
       </Container>
     </div>
@@ -164,4 +182,4 @@ const Button = styled.button`
   }
 `;
 
-export default CreateProduct;
+export default EditProduct;
