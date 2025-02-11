@@ -25,8 +25,16 @@ const Card = ({ product, isEdit, isDelete}) => {
     }
   }
 
+  const handleShowInfo = () =>{
+    if(!isDelete && !isEdit){
+      navigate(`/product/${product._id}`, {
+        state: product
+      })
+    }
+  }
+
   return (
-    <StyledCard>
+    <StyledCard onClick={handleShowInfo}>
       <img
         src={`http://localhost:3000/uploads/${product.images[0]}`}
         alt="Product"

@@ -6,6 +6,7 @@ import Home from './components/Home'
 import CreateProduct from './components/CreateProduct'
 import MyProducts from './components/MyProducts'
 import Edit from './components/Edit'
+import ProductInfo from './components/ProductInfo'
 
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
       <Route path='/create' element={<CreateProduct />} />
       <Route path='/my-products' element={<MyProducts />} />
       <Route path='/edit' element={<Edit />} />
+      <Route path='/product/:id' element={<ProductInfo />} />
     </Routes>
     </BrowserRouter>
   )

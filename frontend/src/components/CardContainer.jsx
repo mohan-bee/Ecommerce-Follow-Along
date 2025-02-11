@@ -2,19 +2,31 @@ import React, { useEffect, useState } from 'react'
 import Card from './Card'
 import styled from 'styled-components'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 
 const CardContainer = () => {
   const [products, setProducts] = useState([])
   const token = localStorage.getItem("token")
+  const navigate = useNavigate()
+
   const fetch = async () =>{
-    let res = await axios.get('http://localhost:3000/api/products', {
-      headers: {
-          'Authorization': `Bearer ${token}`
-      }
-  });
-    setProducts(res.data.data)
-    console.log(res.data.data)
+    try {
+      let res = await axios.get('http://localhost:3000/api/products', {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    });
+      setProducts(res.data.data)
+      console.log(res.data.data)
+    } catch (error) {
+      console.log("Client Error", error.response)
+      if(error.response.data.description.includes("jwt")){
+        alert("Token Expired Login To Continue")
+        navigate('/login')
+      } 
+    }
+
   }
 
   useEffect(() =>{

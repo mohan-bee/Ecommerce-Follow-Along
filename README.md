@@ -147,3 +147,8 @@ PUT `/api/products/:id`\
 
 **Navigation Bar**: Create a Navigation bar with home, add products,my products, cart and added necessary redirect Link\
 **Responsive**: Created a Responsive navigation bar making hamburger style navbar for mobile devices.
+
+## Milestone 16
+
+**Frontend**: Create a Product Info Page when the user click on the product card it will redirect to the product info with the relevant info\
+Added the Quantity functionality of increment and decrement with a add to cart button.
