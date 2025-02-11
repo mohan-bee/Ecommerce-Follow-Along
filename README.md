@@ -124,9 +124,7 @@ POST `/api/products`\
 GET `/api/products`\
 GET `/api/products/:id`\
 PUT `/api/products/:id`\
-DELETE `/api/products/:id`
 
-## Milestone 11
 
 **Data from Server**: Created an GET request to send data from the mongodb to the client\
 **Dynamically Displaying**: Receiving the Data from the frontend using axios and displaying card dynamically.
@@ -140,3 +138,5 @@ DELETE `/api/products/:id`
 
 **Backend**: Already create a endpoint to update the product details.\
 **Frontend**: Added Edit button on clicking the edit button it will redirect to a form with details filled automatically using location from `react-router-dom` made a put request to PUT `/api/products/:id` this endpoint.
+
+
