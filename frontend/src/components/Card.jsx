@@ -136,7 +136,7 @@ const StyledCard = styled.div`
     }
   }
   .primary.btn.del {
-    background-color: #d73d3d;
+    background-color: #fc3b3b;
     color: var(--background-color);
     border: none;
     padding: 10px 20px;

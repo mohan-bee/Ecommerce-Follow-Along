@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { FaBars, FaTimes } from 'react-icons/fa'
+import { FaBars, FaTimes, FaUser } from 'react-icons/fa'
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false)
@@ -23,7 +23,7 @@ const Navbar = () => {
                 <Link to={'/create'}> <p>Add Product</p> </Link>
                 <Link to={`/my-products`}> <p>My Products</p> </Link>
                 <Link to={'/cart'}> <p>Cart</p> </Link>
-
+                <Link to={'/profile'} className='profile'><FaUser /></Link>
             </Links>
         </NavbarContainer>
     )
@@ -42,7 +42,18 @@ const NavbarContainer = styled.div`
         text-decoration: none;
         color: #fff;
     }
+    .profile{
+        background-color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 1px solid black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.2rem;
 
+    }
     @media (max-width: 768px) {
         flex-direction: column;
         align-items: flex-start;
@@ -59,7 +70,7 @@ const NavbarContainer = styled.div`
 const Links = styled.div`
     display: flex;
     gap: 20px;
-
+    align-items: center;
     @media (max-width: 768px) {
         flex-direction: column;
         gap: 10px;

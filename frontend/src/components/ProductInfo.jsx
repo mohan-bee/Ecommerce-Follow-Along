@@ -135,7 +135,7 @@ const QuantityWrapper = styled.div`
     display: flex;
     justify-content: center;
 
-    gap: 20px;
+    gap: 10px;
     /* background-color: var(--primary-color); */
     button{
       background-color: var(--accent-color);
@@ -143,7 +143,12 @@ const QuantityWrapper = styled.div`
       border: none;
       font-size: 2rem;
       font-weight: 500;
-      width: 50px;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
       margin: 0 5px;
       border-radius: 50%;
       border: 1px solid black;

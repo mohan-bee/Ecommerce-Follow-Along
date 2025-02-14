@@ -8,6 +8,8 @@ import MyProducts from './components/MyProducts'
 import Edit from './components/Edit'
 import ProductInfo from './components/ProductInfo'
 import Cart from './components/Cart'
+import Profile from './components/Profile'
+
 
 
 
@@ -24,7 +26,9 @@ const App = () => {
       <Route path='/my-products' element={<MyProducts />} />
       <Route path='/edit' element={<Edit />} />
       <Route path='/product/:id' element={<ProductInfo />} />
+      <Route path='/profile' element={<Profile />} />
       <Route path='/cart' element={<Cart cartItems={cartItems} setCartItems={setCartItems}/>} />
+
     </Routes>
     </BrowserRouter>
   )

@@ -157,9 +157,9 @@ Added the Quantity functionality of increment and decrement with a add to cart b
 
 **Backend**: Created a Cart Schema to store the cart products and wrote necessary functions to add Products in cart, Delete products in cart and update the total price of the cart.
 
-## Milestone 18 
+## Milestone 18
 
-**Backend**: Create a endpoint  GET `/api/cart` to get all the products to display in the frontend\
+**Backend**: Create a endpoint GET `/api/cart` to get all the products to display in the frontend\
 **Frontend**: Displayed all the cart products by getting the product by id and displaying using the Cart cart created for Cart page
 
 ## Milestone 19
@@ -167,3 +167,7 @@ Added the Quantity functionality of increment and decrement with a add to cart b
 **Backend**: Create a endpoint to update the quantity of the product in the cart\
 **Frontend**: Added a Increment and Decrement Button to Increase and Decrease the Quantity of the product and updated the total price of the cart.
 
+## Milestone 20
+
+**Backend**: Create a endpoint GET `api/auth` which will display the current logged user profile details.\
+**Frontend**: Profile page created in the frontend which will show the user Details which contains the avatar, name, email, role and the address if address provided or else a text with "No Address Provided" with a Add Address Button
