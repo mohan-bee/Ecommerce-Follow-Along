@@ -9,6 +9,7 @@ import Edit from './components/Edit'
 import ProductInfo from './components/ProductInfo'
 import Cart from './components/Cart'
 import Profile from './components/Profile'
+import AddressForm from './components/AddressForm'
 
 
 
@@ -28,6 +29,7 @@ const App = () => {
       <Route path='/product/:id' element={<ProductInfo />} />
       <Route path='/profile' element={<Profile />} />
       <Route path='/cart' element={<Cart cartItems={cartItems} setCartItems={setCartItems}/>} />
+      <Route path='/add/address' element={<AddressForm />} />
 
     </Routes>
     </BrowserRouter>

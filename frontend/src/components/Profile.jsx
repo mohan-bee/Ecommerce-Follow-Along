@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import Navbar from './Navbar';
+import { Link } from 'react-router-dom';
 
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -20,12 +21,15 @@ const Profile = () => {
 
   useEffect(() => {
     fetchUserProfile();
+
   }, []);
 
   if (!user) {
     return <LoadingContainer>Loading...</LoadingContainer>;
   }
-
+  if(user){
+    console.log(user)
+  }
   return (
     <div>
       
@@ -38,12 +42,24 @@ const Profile = () => {
           <h2>{user.name}</h2>
           <p><strong>Email:</strong> {user.email}</p>
           <p><strong>Role:</strong> {user.role}</p>
+          {user.addresses ? (
+            <div>
+              <p><strong>Address:</strong> <br />
+            {user.addresses[0].address1}, {user.addresses[0].address2} <br />
+            {user.addresses[0].city} - {user.addresses[0].zipCode}
+           </p>
+            </div>
+          ): (
+            <div>
+              <p><strong>Address:</strong> <br />
+              <p>No Address Found</p>
+              </p>
+              <Link to={'/add/address'}><button className='primary-btn'>Add Address</button></Link>
+            </div>
+          )}
+          
           <p><strong>Joined:</strong> {new Date(user.createdAt).toLocaleDateString()}</p>
-          <p><strong>Address:</strong> {user.address ||( 
-             <div>
-               <p>Address Not Provided</p>
-               <button className='primary-btn'>Add Address</button>
-             </div>)}</p>
+
         </ProfileDetails>
       </ProfileContainer>
     </ProfileWrapper>

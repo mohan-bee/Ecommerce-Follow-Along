@@ -87,4 +87,17 @@ const getUser = async (req, res) => {
     }
 };
 
-module.exports = {signup, login,getUser}
+const addAddress = async (req,res) => {
+    try {
+        const userId = req.user._id
+        const {city, address1, address2, zipcode} = req.body
+        const user = await User.findById({_id: userId})
+        user.addresses = {city, address1, address2, zipCode:zipcode}
+        await user.save()
+        return res.status(200).json({ success: true, message: "Address Added Successfully!", user });
+    } catch (error) {
+        return res.status(500).json({ success: false, message: "Internal Server Error", error: error.message });
+    }
+}
+
+module.exports = {signup, login,getUser,addAddress}
