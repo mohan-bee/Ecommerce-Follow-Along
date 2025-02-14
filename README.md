@@ -156,3 +156,8 @@ Added the Quantity functionality of increment and decrement with a add to cart b
 ## Milestone 17
 
 **Backend**: Created a Cart Schema to store the cart products and wrote necessary functions to add Products in cart, Delete products in cart and update the total price of the cart.
+
+## Milestone 18 
+
+**Backend**: Create a endpoint  GET `/api/cart` to get all the products to display in the frontend\
+**Frontend**: Displayed all the cart products by getting the product by id and displaying using the Cart cart created for Cart page
