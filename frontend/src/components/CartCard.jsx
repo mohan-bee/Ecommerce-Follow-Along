@@ -1,8 +1,28 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-const CartCard = ({ product }) => {
+const CartCard = ({ product,setTotal }) => {
+  const [quantity, setQuantity] = useState(product.quantity)
+
+    const updateQuantity = async () => {
+      try {
+        let res = await axios.post('http://localhost:3000/api/cart/quantity', {product:product._id, quantity}, {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token")
+          }
+        })
+        setTotal(product.price * quantity)
+        console.log(res.data)
+      } catch (error) {
+        console.log("Server Error", error.message)
+      }
+    }
+
+    useEffect(() => {
+      updateQuantity()
+    }, [quantity])
+
     const handleDeleteItem = async (id) => {
         try {
             let res = await axios.get(`http://localhost:3000/api/cart/delete/${id}`, {
@@ -27,11 +47,27 @@ const CartCard = ({ product }) => {
         <ProductName>{product.name}</ProductName>
         <ProductDescription>{product.description}</ProductDescription>
         <PriceInfo>
-          ${product.price} x {product.quantity} ={' '}
-          {(product.price * product.quantity).toFixed(2)}
+          ${product.price} x {quantity} ={' '}
+          {(product.price * quantity).toFixed(2)}
         </PriceInfo>
         <Category>{product.category}</Category>
       </DetailsContainer>
+      <QuantityContainer>
+      <button onClick={() => setQuantity(prev => {
+            if (prev > 1){
+              return prev - 1
+            }
+            return prev
+          })}>-</button>
+          <p>{quantity}</p>
+          <button onClick={() => setQuantity(prev => {
+            if (prev >= product.stock){
+                alert("Out Of Stock")
+                return prev
+            }   
+            return prev + 1
+        })}>+</button>
+      </QuantityContainer>
       <DeleteButton onClick={() => handleDeleteItem(product._id)}>Delete</DeleteButton>
     </CardContainer>
   );
@@ -101,4 +137,21 @@ const DeleteButton = styled.button`
   }
 `;
 
+const QuantityContainer = styled.div`
+  /* background-color: var(--accent-color); */
+  display: flex;
+  margin: 0 20px;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  button{
+    font-size: 20px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    border: none;
+    width: 40px;
+    height: 40px;
+  }
+`
 export default CartCard;
