@@ -175,3 +175,7 @@ Added the Quantity functionality of increment and decrement with a add to cart b
 ## Milestone 21
 
 **Frontend**: In the Profile page, added add address button in the address section if address is not provided on clicking the button it will redirect to a address form which will contain city,address1, address2, zipcode.
+
+## Milestone 22
+
+**Endpoint Creation**: Created a new endpoint in the user controller of POST `api/auth/add/address` it will add the address to the current logged in user.
