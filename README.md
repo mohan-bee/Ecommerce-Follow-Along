@@ -163,3 +163,9 @@ Added the Quantity functionality of increment and decrement with a add to cart b
 
 **Backend**: Create a endpoint  GET `/api/cart` to get all the products to display in the frontend\
 **Frontend**: Displayed all the cart products by getting the product by id and displaying using the Cart cart created for Cart page
+
+## Milestone 19
+
+**Backend**: Create a endpoint to update the quantity of the product in the cart\
+**Frontend**: Added a Increment and Decrement Button to Increase and Decrease the Quantity of the product and updated the total price of the cart.
+

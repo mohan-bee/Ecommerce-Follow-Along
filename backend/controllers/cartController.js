@@ -56,6 +56,20 @@ const updateTotal = async (req,res) => {
     }
 }
 
+const updateQuantity = async (req, res) => {
+    try {
+        const user = req.user._id
+        const {product,quantity} = req.body
+        const cart = await Cart.findOne({user})
+        const target = cart.products.find(item => item.product == product)
+        target.quantity = quantity
+        await cart.save()
+        res.status(200).json({success: true, message: "Quantity Updated Successfully", target})
+    } catch (error) {
+        res.status(500).json({success: false, message: "Internal Server Error", description: error.message})
+    }
+}
+
 const deleteItem = async (req, res) => {
     try {
         const user = req.user._id;
@@ -74,4 +88,4 @@ const deleteItem = async (req, res) => {
     }
 };
 
-module.exports = {addToCart, allCartItems, updateTotal,deleteItem}
+module.exports = {addToCart, allCartItems, updateTotal,deleteItem,updateQuantity}

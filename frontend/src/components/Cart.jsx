@@ -58,7 +58,7 @@ const Cart = ({ cartItems, setCartItems }) => {
 
   useEffect(() => {
     fetchCartAndProducts();
-  }, [cartItems]);
+  }, []);
 
   return (
     <div>
@@ -67,7 +67,7 @@ const Cart = ({ cartItems, setCartItems }) => {
         <div>
           <h2>Total: ${total.toFixed(2)}</h2>
           {products.map((product, index) => (
-            <CartCard key={index} product={product} />
+            <CartCard key={index} product={product} setTotal={setTotal}/>
           ))}
         </div>
       )}
