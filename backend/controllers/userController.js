@@ -68,5 +68,23 @@ const signup =  async (req, res) =>{
     }
 }
 
+const getUser = async (req, res) => {
+    try {
+        if (!req.user || !req.user.email) {
+            return res.status(400).json({ success: false, message: "User not authenticated" });
+        }
 
-module.exports = {signup, login}
+        const email = req.user.email;
+        const user = await User.findOne({ email });
+
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User Not Found" });
+        }
+
+        return res.status(200).json({ success: true, message: "User Found!", user });
+    } catch (error) {
+        return res.status(500).json({ success: false, message: "Internal Server Error", error: error.message });
+    }
+};
+
+module.exports = {signup, login,getUser}
