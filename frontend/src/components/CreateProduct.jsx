@@ -13,7 +13,6 @@ const CreateProduct = () => {
   const [tags, setTags] = useState("");
   const [price, setPrice] = useState("");
   const [stock, setStock] = useState("");
-  const email = localStorage.getItem("email");
   const token = localStorage.getItem("token");
   const categories = ["Electronics", "Fashion", "Books", "Home Appliances"];
 
@@ -28,7 +27,6 @@ const CreateProduct = () => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('name', name);
-    formData.append('email', email);
     formData.append('description', description);
     formData.append('category', category);
     formData.append('tags', tags);

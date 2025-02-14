@@ -32,8 +32,6 @@ const productSchema = mongoose.Schema({
     },
     images: {
         type: [String],
-        required: true,
-        unique: true
     }
 })
 

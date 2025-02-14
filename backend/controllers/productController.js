@@ -5,9 +5,9 @@ const createProduct = async (req, res) => {
         console.log("Request body:", req.body);
         console.log("Request files:", req.files);
 
-        const { name, description, category, tags, price, stock, email } = req.body;
+        const { name, description, category, tags, price, stock } = req.body;
         const images = req.files.map(file => file.filename);
-        const newProduct = new Product({ name, email, description, category, tags, price, stock, images });
+        const newProduct = new Product({ name, email:req.user.email, description, category, tags, price, stock, images });
 
         await newProduct.save();
         if (!newProduct) {

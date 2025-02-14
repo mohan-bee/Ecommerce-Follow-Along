@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Navbar from './Navbar';
+import axios from 'axios';
 
 const ProductInfo = () => {
   const location = useLocation();
@@ -19,10 +20,20 @@ const ProductInfo = () => {
     slidesToScroll: 1,
   };
 
-  const handleAddToCart = () => {
-    // Add to cart logic here
-    alert(`Added ${quantity} of ${product.name} to cart`);
-  };
+    const handleCart = async (e) => {
+      e.stopPropagation()
+      try {
+        let res = await axios.post(`http://localhost:3000/api/cart/add`, {product: product._id, quantity}, {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token")
+          }
+        })
+        console.log(res.data)
+        alert("Item Added to Cart")
+      } catch (error) {
+        console.log(error.message)
+      }
+    }
 
   return (
     <div>
@@ -53,6 +64,14 @@ const ProductInfo = () => {
         <QuantityWrapper>
           <label htmlFor="quantity">Quantity:</label>
           <div className="box">
+          
+          <button onClick={() => setQuantity(prev => {
+            if (prev > 1){
+              return prev - 1
+            }
+            return prev
+          })}>-</button>
+          <h1>{quantity}</h1>
           <button onClick={() => setQuantity(prev => {
             if (prev >= product.stock){
                 alert("Out Of Stock")
@@ -60,16 +79,9 @@ const ProductInfo = () => {
             }   
             return prev + 1
         })}>+</button>
-          <h1>{quantity}</h1>
-          <button onClick={() => setQuantity(prev => {
-            if (prev > 1){
-                return prev - 1
-            }
-            return prev
-          })}>-</button>
           </div>
         </QuantityWrapper>
-        <Button onClick={handleAddToCart}>Add to Cart</Button>
+        <Button onClick={handleCart}>Add to Cart</Button>
       </Container>
     </div>
   );
@@ -116,26 +128,27 @@ const QuantityWrapper = styled.div`
   justify-content: center;
   label {
     margin-right: 10px;
-    font-size: 16px;
+    font-size: 1.5rem;
+  
   }
   .box{
     display: flex;
     justify-content: center;
 
     gap: 20px;
-    background-color: var(--secondary-color);
-    border-top:2px solid black ;
-    border-bottom:2px solid black ;
+    /* background-color: var(--primary-color); */
     button{
-        width: 40px;
-        text-align: center;
-        background-color: transparent;
-        font-size: 20px;
-        border: none;
-        border-left:2px solid black ;
-        border-right:2px solid black ;
-        font-weight: 600;
+      background-color: var(--accent-color);
+      color: #000451;
+      border: none;
+      font-size: 2rem;
+      font-weight: 500;
+      width: 50px;
+      margin: 0 5px;
+      border-radius: 50%;
+      border: 1px solid black;
     }
+    
   }
 `;
 
@@ -143,14 +156,14 @@ const QuantityWrapper = styled.div`
 
 const Button = styled.button`
   padding: 10px 20px;
-  background: #578e7e;
-  color: #fff;
+  background: var(--primary-color);
+  color: black;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
   &:hover {
-    background: #467968;
+    background: #29e66e;
   }
 `;
 

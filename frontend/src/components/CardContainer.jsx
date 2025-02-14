@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import Card from './Card'
+
 import styled from 'styled-components'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import Card from './Card'
 
 
 const CardContainer = () => {

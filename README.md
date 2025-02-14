@@ -152,3 +152,7 @@ PUT `/api/products/:id`\
 
 **Frontend**: Create a Product Info Page when the user click on the product card it will redirect to the product info with the relevant info\
 Added the Quantity functionality of increment and decrement with a add to cart button.
+
+## Milestone 17
+
+**Backend**: Created a Cart Schema to store the cart products and wrote necessary functions to add Products in cart, Delete products in cart and update the total price of the cart.

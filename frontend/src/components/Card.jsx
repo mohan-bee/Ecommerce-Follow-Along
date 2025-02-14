@@ -33,6 +33,20 @@ const Card = ({ product, isEdit, isDelete}) => {
     }
   }
 
+const handleCart = async (e) => {
+  e.stopPropagation()
+  try {
+    let res = await axios.post(`http://localhost:3000/api/cart/add`, {product: product._id, quantity: 1}, {
+      headers: {
+        Authorization: "Bearer " + token
+      }
+    })
+    console.log(res.data)
+    alert("Item Added to Cart")
+  } catch (error) {
+    console.log(error.message)
+  }
+}
   return (
     <StyledCard onClick={handleShowInfo}>
       <img
@@ -43,9 +57,12 @@ const Card = ({ product, isEdit, isDelete}) => {
       <h1 className="title">{product.name}</h1>
       <p className="desc">{product.description}</p>
       <p className="price">$ {product.price}</p>
-      {!isEdit && <button className="primary btn">Add to Cart</button>}
+      <p className='category'>{product.category}</p>
+      <div className="buttons">
+      {!isEdit && <button onClick={handleCart} className="primary btn">Add to Cart</button>}
       {isEdit && <button onClick={handleEdit} className="primary btn">Edit</button>}
       {isDelete && <button onClick={handleDelete} className="primary btn del">Delete</button>}
+      </div>
     </StyledCard>
   );
 };
@@ -60,11 +77,23 @@ const StyledCard = styled.div`
   text-align: center;
   font-family: 'Poppins', sans-serif;
   margin: 20px auto;
-
+  border: 1px solid black;
+  .category{
+    background-color: #272727;
+    color: white;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    border-radius:0 10px 0 10px;
+    font-size: 14px;
+  }
   .cover {
     width: 100%;
     height: 200px;
     object-fit: cover;
+    padding: 10px;
+    background-color: white;
   }
 
   .title {
@@ -84,23 +113,26 @@ const StyledCard = styled.div`
   .price {
     font-size: 1.2rem;
     font-weight: bold;
-    color: var(--primary-color);
+    color: var(--font-color);
     margin: 10px 0;
   }
-
+  .buttons{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
   .primary.btn {
     background-color: var(--primary-color);
-    color: var(--background-color);
-    border: none;
+    color: var(--font-color);
+    border: 1px solid black;
     padding: 10px 20px;
     font-size: 1rem;
     border-radius: 5px;
     cursor: pointer;
     margin: 20px 0;
     transition: background-color 0.3s ease;
-
     &:hover {
-      background-color: #467968; 
+      background-color: #06c44c; 
     }
   }
   .primary.btn.del {
@@ -113,20 +145,12 @@ const StyledCard = styled.div`
     cursor: pointer;
     margin: 20px 0;
     transition: background-color 0.3s ease;
-
+    border: 1px solid black;
     &:hover {
-      background-color: #467968; 
+      background-color: #bf3535; 
     }
   }
 `;
 
-const EditIcon = styled.div`
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 24px;
-  color: var(--primary-color);
-  cursor: pointer;
-`;
 
 export default Card;
