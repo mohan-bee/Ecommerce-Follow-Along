@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Signup from './components/Signup'
 import {Route, Routes, BrowserRouter} from 'react-router-dom'
 import Login from './components/Login'
@@ -7,9 +7,13 @@ import CreateProduct from './components/CreateProduct'
 import MyProducts from './components/MyProducts'
 import Edit from './components/Edit'
 import ProductInfo from './components/ProductInfo'
+import Cart from './components/Cart'
+
 
 
 const App = () => {
+  const [cartItems, setCartItems] = useState([])
+
   return (
     <BrowserRouter>
     <Routes>
@@ -20,6 +24,7 @@ const App = () => {
       <Route path='/my-products' element={<MyProducts />} />
       <Route path='/edit' element={<Edit />} />
       <Route path='/product/:id' element={<ProductInfo />} />
+      <Route path='/cart' element={<Cart cartItems={cartItems} setCartItems={setCartItems}/>} />
     </Routes>
     </BrowserRouter>
   )

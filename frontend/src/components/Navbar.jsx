@@ -5,7 +5,6 @@ import { FaBars, FaTimes } from 'react-icons/fa'
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false)
-    const email = localStorage.getItem("email")
 
     const toggleMenu = () => {
         setIsOpen(!isOpen)
@@ -17,13 +16,14 @@ const Navbar = () => {
                 <Hamburger onClick={toggleMenu}>
                     {isOpen ? <FaTimes /> : <FaBars />}
                 </Hamburger>
-                <Link to={'/'} className='logo'> <h1>Shoeop</h1> </Link>
+                <Link to={'/'} className='logo'> <h1>Electroop</h1> </Link>
             </div>
             <Links className={isOpen ? 'open' : ''}>
                 <Link to={'/'}> <p>Home</p> </Link>
                 <Link to={'/create'}> <p>Add Product</p> </Link>
                 <Link to={`/my-products`}> <p>My Products</p> </Link>
                 <Link to={'/cart'}> <p>Cart</p> </Link>
+
             </Links>
         </NavbarContainer>
     )
@@ -37,7 +37,7 @@ const NavbarContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-
+    border-bottom: 1px solid black;
     a {
         text-decoration: none;
         color: #fff;

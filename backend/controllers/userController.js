@@ -57,7 +57,7 @@ const signup =  async (req, res) =>{
         }
         const token = await jwt.sign({_id: user._id, email: user.email},
             "secret",
-            {expiresIn: "1h"}
+            {expiresIn: "7d"}
         )
         console.log("User logged in successfully:", email);
         return res.status(200).json({success: true, msg: "User Logged In Sucessfully", token, user});

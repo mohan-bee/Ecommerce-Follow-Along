@@ -1,7 +1,8 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import Card from './Card'
 import Navbar from './Navbar'
+import styled from 'styled-components'
 
 const MyProducts = () => {
     const [products, setProducts] = useState([])
@@ -36,11 +37,21 @@ const MyProducts = () => {
         <div>
             <Navbar />
             <h1>My Products</h1>
+            <MyProductContainer>
             {products && products.map(product => (
-                    <Card key={product._id} product={product} isEdit={true} isDelete={true}/>
+                <Card key={product._id} product={product} isEdit={true} isDelete={true}/>
             ))}
+            </MyProductContainer>
         </div>
     )
 }
 
 export default MyProducts
+
+
+const MyProductContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+`
