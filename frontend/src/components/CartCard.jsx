@@ -2,71 +2,92 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-const CartCard = ({ product,setTotal }) => {
+const CartCard = ({ product, updateCart }) => {
   const [quantity, setQuantity] = useState(product.quantity)
-
-    const updateQuantity = async () => {
-      try {
-        let res = await axios.post('http://localhost:3000/api/cart/quantity', {product:product._id, quantity}, {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token")
-          }
-        })
-        setTotal(product.price * quantity)
-        console.log(res.data)
-      } catch (error) {
-        console.log("Server Error", error.message)
+  console.log(product._id)
+  const updateQuantity = async () => {
+    try {
+     let res = await axios.post('http://localhost:3000/api/cart/update', {
+      productId: product._id,
+      quantity: Number(quantity)
+    }, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token")
       }
+     })
+     updateCart()
+     console.log(res.data)
+    } catch (error) {
+      console.log("Client Error", error.response)
+      if(error.response.data.description.includes("jwt")){
+        alert("Token Expired Login To Continue")
+        navigate('/login')
+      } 
     }
+  }
+ 
+  useEffect(() => {
+    if (quantity !== product.quantity) {
+      updateQuantity();
+    }
+  }, [quantity]);
 
-    useEffect(() => {
-      updateQuantity()
-    }, [quantity])
+  const handleDecrement = () => {
+    setQuantity((prev) => (prev > 1 ? prev - 1 : prev))
+  }
+  const handleIncrement = () => {
+    setQuantity((prev) => {
+      console.log("Stock",product)
+      if (prev >= product.stock) {
+        alert("Out Of Stock");
+        return prev;
+      }
+      return prev + 1;
+    })
+  }
 
-    const handleDeleteItem = async (id) => {
-        try {
-            let res = await axios.get(`http://localhost:3000/api/cart/delete/${id}`, {
-                headers: { Authorization: "Bearer " + localStorage.getItem("token") },
-            });
-            
-            console.log(res.data)
-            alert(res.data.message)
-        } catch (error) {
-            console.log("Server Error", error.message)
+  const handleDeleteItem = async (id) => {
+    try {
+      let res = await axios.delete(`http://localhost:3000/api/cart/delete/${id}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token")
         }
+      })
+      updateCart()
+      console.log(res.data)
+    } catch (error) {
+      console.log("Client Error", error.response)
+      if(error.response.data.description.includes("jwt")){
+        alert("Token Expired Login To Continue")
+        navigate('/login')
+      } 
     }
+  }
   return (
     <CardContainer>
       <ImageContainer>
-        <img
-          src={`http://localhost:3000/uploads/${product.images[0]}`}
-          alt={product.name}
-        />
+        <img src={`http://localhost:3000/uploads/${product.imageUrl}`} alt={product.name} />
       </ImageContainer>
       <DetailsContainer>
         <ProductName>{product.name}</ProductName>
         <ProductDescription>{product.description}</ProductDescription>
         <PriceInfo>
-          ${product.price} x {quantity} ={' '}
-          {(product.price * quantity).toFixed(2)}
+          ${product.price} x {quantity} = {(product.total).toFixed(2)}
         </PriceInfo>
-        <Category>{product.category}</Category>
+        {/* <Category>{product.category}</Category> */}
       </DetailsContainer>
       <QuantityContainer>
-      <button onClick={() => setQuantity(prev => {
-            if (prev > 1){
-              return prev - 1
-            }
-            return prev
-          })}>-</button>
-          <p>{quantity}</p>
-          <button onClick={() => setQuantity(prev => {
-            if (prev >= product.stock){
-                alert("Out Of Stock")
-                return prev
-            }   
-            return prev + 1
-        })}>+</button>
+        <button
+          onClick={handleDecrement}
+        >
+          -
+        </button>
+        <p>{quantity}</p>
+        <button
+          onClick={handleIncrement}
+        >
+          +
+        </button>
       </QuantityContainer>
       <DeleteButton onClick={() => handleDeleteItem(product._id)}>Delete</DeleteButton>
     </CardContainer>
@@ -131,21 +152,19 @@ const DeleteButton = styled.button`
   cursor: pointer;
   font-size: 0.9rem;
   transition: background 0.3s;
-
   &:hover {
     background: #c0392b;
   }
 `;
 
 const QuantityContainer = styled.div`
-  /* background-color: var(--accent-color); */
   display: flex;
   margin: 0 20px;
   gap: 10px;
   justify-content: center;
   align-items: center;
   font-size: 20px;
-  button{
+  button {
     font-size: 20px;
     background-color: var(--accent-color);
     border-radius: 50%;
@@ -153,5 +172,6 @@ const QuantityContainer = styled.div`
     width: 40px;
     height: 40px;
   }
-`
+`;
+
 export default CartCard;

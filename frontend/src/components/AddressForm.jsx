@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import axios from 'axios';
 import Navbar from "./Navbar";
+import { useNavigate } from "react-router-dom";
 
 const AddressForm = () => {
 
@@ -10,8 +11,8 @@ const AddressForm = () => {
   const [address1, setAddress1] = useState("");
   const [address2, setAddress2] = useState("");
   const [zipcode, setZipcode] = useState("");
-  const token = localStorage.getItem("token");
-  
+  const token = sessionStorage.getItem("token");
+  const navigate = useNavigate()
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
@@ -22,7 +23,11 @@ const AddressForm = () => {
         })
         console.log(res.data)
     } catch (error) {
-        console.log(error.message)
+      console.log("Client Error", error.response)
+      if(error.response.data.description.includes("jwt")){
+        alert("Token Expired Login To Continue")
+        navigate('/login')
+      } 
     }
   }
 

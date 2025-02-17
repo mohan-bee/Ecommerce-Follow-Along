@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Signup from './components/Signup'
 import {Route, Routes, BrowserRouter} from 'react-router-dom'
 import Login from './components/Login'
@@ -10,13 +10,17 @@ import ProductInfo from './components/ProductInfo'
 import Cart from './components/Cart'
 import Profile from './components/Profile'
 import AddressForm from './components/AddressForm'
+import SelectAddress from './components/SelectAddress'
+import Order from './components/Order'
+import Payment from './components/Payment'
+import axios from 'axios'
 
 
 
 
 const App = () => {
   const [cartItems, setCartItems] = useState([])
-
+  
   return (
     <BrowserRouter>
     <Routes>
@@ -30,6 +34,9 @@ const App = () => {
       <Route path='/profile' element={<Profile />} />
       <Route path='/cart' element={<Cart cartItems={cartItems} setCartItems={setCartItems}/>} />
       <Route path='/add/address' element={<AddressForm />} />
+      <Route path='/select-address' element={<SelectAddress />} />
+      <Route path='/order-confirmation' element={<Order />} />
+      <Route path='/payment' element={<Payment />} />
 
     </Routes>
     </BrowserRouter>

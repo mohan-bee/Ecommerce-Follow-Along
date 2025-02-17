@@ -59,6 +59,8 @@ const signup =  async (req, res) =>{
             "secret",
             {expiresIn: "7d"}
         )
+    
+      
         console.log("User logged in successfully:", email);
         return res.status(200).json({success: true, msg: "User Logged In Sucessfully", token, user});
 
@@ -92,7 +94,7 @@ const addAddress = async (req,res) => {
         const userId = req.user._id
         const {city, address1, address2, zipcode} = req.body
         const user = await User.findById({_id: userId})
-        user.addresses = {city, address1, address2, zipCode:zipcode}
+        user.addresses.push({city, address1, address2, zipCode:zipcode})
         await user.save()
         return res.status(200).json({ success: true, message: "Address Added Successfully!", user });
     } catch (error) {
@@ -100,4 +102,24 @@ const addAddress = async (req,res) => {
     }
 }
 
-module.exports = {signup, login,getUser,addAddress}
+const getAddresses = async (req,res) => {
+    try {
+        const userId = req.user._id
+        const user = await User.findById({_id: userId})
+        return res.status(200).json({ success: true, message: "Address Added Successfully!", addresses:user.addresses });
+    } catch (error) {
+        return res.status(500).json({ success: false, message: "Internal Server Error", error: error.message });
+    }
+}
+const logout = async (req, res) => {
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict'
+    });
+    res.status(200).json({ success: true, message: "Logged out successfully." });
+  };
+  
+  module.exports = { logout };
+  
+module.exports = {signup, login,getUser,addAddress, getAddresses}

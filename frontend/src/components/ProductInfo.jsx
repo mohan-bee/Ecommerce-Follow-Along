@@ -23,9 +23,16 @@ const ProductInfo = () => {
     const handleCart = async (e) => {
       e.stopPropagation()
       try {
-        let res = await axios.post(`http://localhost:3000/api/cart/add`, {product: product._id, quantity}, {
+        let res = await axios.post(`http://localhost:3000/api/cart/add`, {
+          productId: product._id,
+          name: product.name,
+          price: product.price,
+          imageUrl: product.images[0],
+          quantity: quantity,
+          description: product.description,
+        }, {
           headers: {
-            Authorization: "Bearer " + localStorage.getItem("token")
+            Authorization: "Bearer " + sessionStorage.getItem("token")
           }
         })
         console.log(res.data)

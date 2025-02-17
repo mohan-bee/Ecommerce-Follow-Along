@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import Navbar from './Navbar';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Profile = () => {
   const [user, setUser] = useState(null);
-
+  const navigate = useNavigate()
   const fetchUserProfile = async () => {
     try {
-      const token = localStorage.getItem("token");
+      const token = sessionStorage.getItem("token");
       const response = await axios.get('http://localhost:3000/api/auth', {
         headers: { Authorization: "Bearer " + token },
       });
@@ -18,14 +18,17 @@ const Profile = () => {
       console.error("Error fetching user profile:", error.message);
     }
   };
-
+  const handleLogout = () => {
+    sessionStorage.removeItem("token")
+    alert("Logged Out Successfully !!")
+    navigate('/login')
+  }
   useEffect(() => {
     fetchUserProfile();
-
   }, []);
 
   if (!user) {
-    return <LoadingContainer>Loading...</LoadingContainer>;
+    navigate('/login');
   }
   if(user){
     console.log(user)
@@ -35,7 +38,7 @@ const Profile = () => {
       
       <Navbar />
       <ProfileWrapper>
-      <LogoutButton>Logout</LogoutButton>
+      <LogoutButton onClick={handleLogout}>Logout</LogoutButton>
       <ProfileContainer>
         <ProfileImage src={`http://localhost:3000/uploads/${user.avatar.url}`} alt={user.name} />
         <ProfileDetails>
@@ -54,9 +57,9 @@ const Profile = () => {
               <p><strong>Address:</strong> <br />
               <p>No Address Found</p>
               </p>
-              <Link to={'/add/address'}><button className='primary-btn'>Add Address</button></Link>
             </div>
           )}
+          <Link to={'/add/address'}><button className='primary-btn'>Add Address</button></Link>
           
           <p><strong>Joined:</strong> {new Date(user.createdAt).toLocaleDateString()}</p>
 
