@@ -191,3 +191,7 @@ Added the Quantity functionality of increment and decrement with a add to cart b
 
 **Frontend:** Created **Order Confirmation** page and displayed ordered products, selected address, and total cart value
 **Backend:**  API to fetch ordered products, total value, and selected address and handled order placement on button click.
+
+## Milestone 25
+
+**Endpoint Creation**: Create a Endpoint POST `api/order/place` to add the order with a unique order ID
