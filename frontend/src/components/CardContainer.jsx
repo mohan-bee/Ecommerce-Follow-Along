@@ -8,7 +8,7 @@ import Card from './Card'
 
 const CardContainer = () => {
   const [products, setProducts] = useState([])
-  const token = localStorage.getItem("token")
+  const token = sessionStorage.getItem("token")
   const navigate = useNavigate()
 
   const fetch = async () =>{
@@ -30,6 +30,7 @@ const CardContainer = () => {
 
   }
 
+
   useEffect(() =>{
     fetch()
   }, [])
@@ -37,7 +38,7 @@ const CardContainer = () => {
   return (
     <StyledCardContainer>
       {products && products.map(product => (
-        <Card key={product._id} product={product} isEdit={false} isDelete={false}/>
+        <Card key={product._id} product={product} isEdit={false} isDelete={false} />
       ))}
 
     </StyledCardContainer>

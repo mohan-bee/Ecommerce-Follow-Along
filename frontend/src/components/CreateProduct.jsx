@@ -13,7 +13,7 @@ const CreateProduct = () => {
   const [tags, setTags] = useState("");
   const [price, setPrice] = useState("");
   const [stock, setStock] = useState("");
-  const token = localStorage.getItem("token");
+  const token = sessionStorage.getItem("token");
   const categories = ["Electronics", "Fashion", "Books", "Home Appliances"];
 
   const handleImagesChange = (e) => {

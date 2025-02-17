@@ -15,8 +15,8 @@ const EditProduct = () => {
   const [tags, setTags] = useState("");
   const [price, setPrice] = useState("");
   const [stock, setStock] = useState("");
-  const email = localStorage.getItem("email");
-  const token = localStorage.getItem("token");
+  const email = sessionStorage.getItem("email");
+  const token = sessionStorage.getItem("token");
   const categories = ["Electronics", "Fashion", "Books", "Home Appliances"];
 
   const handleImagesChange = (e) => {
@@ -43,7 +43,6 @@ const EditProduct = () => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('name', name);
-    formData.append('email', email);
     formData.append('description', description);
     formData.append('category', category);
     formData.append('tags', tags);

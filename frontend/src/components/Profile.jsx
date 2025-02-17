@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import Navbar from './Navbar';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Profile = () => {
   const [user, setUser] = useState(null);
-
+  const navigate = useNavigate()
   const fetchUserProfile = async () => {
     try {
-      const token = localStorage.getItem("token");
+      const token = sessionStorage.getItem("token");
       const response = await axios.get('http://localhost:3000/api/auth', {
         headers: { Authorization: "Bearer " + token },
       });
@@ -17,33 +18,51 @@ const Profile = () => {
       console.error("Error fetching user profile:", error.message);
     }
   };
-
+  const handleLogout = () => {
+    sessionStorage.removeItem("token")
+    alert("Logged Out Successfully !!")
+    navigate('/login')
+  }
   useEffect(() => {
     fetchUserProfile();
   }, []);
 
   if (!user) {
-    return <LoadingContainer>Loading...</LoadingContainer>;
+    navigate('/login');
   }
-
+  if(user){
+    console.log(user)
+  }
   return (
     <div>
       
       <Navbar />
       <ProfileWrapper>
-      <LogoutButton>Logout</LogoutButton>
+      <LogoutButton onClick={handleLogout}>Logout</LogoutButton>
       <ProfileContainer>
         <ProfileImage src={`http://localhost:3000/uploads/${user.avatar.url}`} alt={user.name} />
         <ProfileDetails>
           <h2>{user.name}</h2>
           <p><strong>Email:</strong> {user.email}</p>
           <p><strong>Role:</strong> {user.role}</p>
+          {user.addresses ? (
+            <div>
+              <p><strong>Address:</strong> <br />
+            {user.addresses[0].address1}, {user.addresses[0].address2} <br />
+            {user.addresses[0].city} - {user.addresses[0].zipCode}
+           </p>
+            </div>
+          ): (
+            <div>
+              <p><strong>Address:</strong> <br />
+              <p>No Address Found</p>
+              </p>
+            </div>
+          )}
+          <Link to={'/add/address'}><button className='primary-btn'>Add Address</button></Link>
+          
           <p><strong>Joined:</strong> {new Date(user.createdAt).toLocaleDateString()}</p>
-          <p><strong>Address:</strong> {user.address ||( 
-             <div>
-               <p>Address Not Provided</p>
-               <button className='primary-btn'>Add Address</button>
-             </div>)}</p>
+
         </ProfileDetails>
       </ProfileContainer>
     </ProfileWrapper>
