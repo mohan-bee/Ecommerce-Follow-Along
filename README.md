@@ -198,3 +198,8 @@ Added the Quantity functionality of increment and decrement with a add to cart b
 
 **Frontend**: Developed a User Orders page that displays all past orders with product details, order dates, and statuses.\
 **Backend**: Created an API endpoint that accepts a user's email, retrieves the corresponding user _id, fetches all orders linked to that _id, and returns the order data in the response.
+
+## Milestone 27
+
+**Frontend**: Created a **My Orders** page that fetches and displays all user orders, including product details, order dates, and statuses. Added **My Orders** to the navbar for easy navigation.\
+**Backend**: Integrated the **My Orders** API to fetch user orders using their email and return order details in the response.
