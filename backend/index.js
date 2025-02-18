@@ -7,6 +7,7 @@ const userRouter = require('./routes/user')
 const productRouter = require('./routes/product')
 const cartRouter = require('./routes/cart')
 const orderRouter = require('./routes/order')
+const paymentRouter = require('./routes/payment')
 const cors = require('cors')
 const authMiddleware = require('./middlewares/auth')
 
@@ -16,6 +17,7 @@ app.use('/api/auth', userRouter)
 app.use('/api/products',authMiddleware, productRouter)
 app.use('/api/cart', authMiddleware, cartRouter)
 app.use('/api/order', authMiddleware, orderRouter)
+app.use('/api/pay',authMiddleware ,paymentRouter)
 
 app.use('/uploads', express.static('uploads'))
 

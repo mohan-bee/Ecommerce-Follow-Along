@@ -63,7 +63,7 @@ const Order = () => {
             )}
           </ProductList>
 
-          <Button onClick={() => navigate('/payment')}>Confirm</Button>
+          <Button onClick={() => navigate('/payment', {state: {orderData: orderData}})}>Confirm</Button>
         </Card>
       </Container>
     </div>
