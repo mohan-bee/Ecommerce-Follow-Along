@@ -208,3 +208,8 @@ Added the Quantity functionality of increment and decrement with a add to cart b
 
 **Frontend**: Updated the **My Orders** page by adding a **Cancel Order** button for each active order. The button is hidden for already canceled orders. Upon clicking, the order status is updated to **Canceled**.\
 **Backend**: Created an endpoint (`/api/order/cancel/:id`) that receives the **order ID**, retrieves the order, updates its status to **Canceled**, and saves the changes.
+
+## Milestone 29
+
+**Frontend**: Integrate Razorypay's checkout into your UI to streamline the payment process.\
+**Backend**: Utilize the Razorpay API to securely handle and process online payments using the endpoint `api/pay/checkout`.

@@ -50,8 +50,13 @@ const Profile = () => {
           {user.addresses ? (
             <div>
               <p><strong>Address:</strong> <br />
-            {user.addresses[0].address1}, {user.addresses[0].address2} <br />
-            {user.addresses[0].city} - {user.addresses[0].zipCode}
+              {user.addresses.length > 0 && (
+                <p>
+                  { user.addresses[0].address1}, {user.addresses[0].address2} <br />
+                  {user.addresses[0].city} - {user.addresses[0].zipCode}
+                </p>
+              )}
+
            </p>
             </div>
           ): (

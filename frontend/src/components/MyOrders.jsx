@@ -74,7 +74,7 @@ const MyOrders = () => {
             {!order.canceled ? (
                 <DeleteButton onClick={() => cancelOrder(order._id)}>Cancel Order</DeleteButton>
             ): (
-                <p>Cancelled</p>
+                <p>Status: Cancelled</p>
             )}
           </OrderCard>
         ))
