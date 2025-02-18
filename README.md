@@ -215,3 +215,8 @@ Added the Quantity functionality of increment and decrement with a add to cart b
 
 **Frontend**: Integrate Razorypay's checkout into your UI to streamline the payment process.\
 **Backend**: Utilize the Razorpay API to securely handle and process online payments using the endpoint `api/pay/checkout`.
+
+## Milestone 30
+
+**Frontend**: Updated the payment page by integrating Razorpay’s checkout widget. After creating a Razorpay account and obtaining your sandbox API keys, install the appropriate NPM package to display multiple online payment methods.\  
+**Backend**: Created an endpoint (e.g., `/api/payment/razorpay`) that uses Razorpay’s API along with your client key to initialize and process transactions. This endpoint securely handles payment details and updates the order status upon successful payment.
