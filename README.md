@@ -203,3 +203,8 @@ Added the Quantity functionality of increment and decrement with a add to cart b
 
 **Frontend**: Created a **My Orders** page that fetches and displays all user orders, including product details, order dates, and statuses. Added **My Orders** to the navbar for easy navigation.\
 **Backend**: Integrated the **My Orders** API to fetch user orders using their email and return order details in the response.
+
+## Milestone 28
+
+**Frontend**: Updated the **My Orders** page by adding a **Cancel Order** button for each active order. The button is hidden for already canceled orders. Upon clicking, the order status is updated to **Canceled**.\
+**Backend**: Created an endpoint (`/api/order/cancel/:id`) that receives the **order ID**, retrieves the order, updates its status to **Canceled**, and saves the changes.
