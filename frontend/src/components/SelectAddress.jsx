@@ -10,7 +10,7 @@ const SelectAddress = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const cart = location.state || {};
-  console.log(cart)
+  console.log("CArt",cart)
   const getAddresses = async () => {
     try {
       let res = await axios.get('http://localhost:3000/api/auth/addresses', {
@@ -37,10 +37,11 @@ const SelectAddress = () => {
     }
 
     try {
+      console.log("products", cart.products)
       const token = sessionStorage.getItem("token");
       const orderResponse = await axios.post(
         'http://localhost:3000/api/order/place',
-        { cart, total:cart.total, address: selectedAddress },
+        { products: cart.products, total:cart.total, address: selectedAddress },
         { headers: { Authorization: "Bearer " + token } }
       );  
 

@@ -35,7 +35,9 @@ const Profile = () => {
   }
   return (
     <div>
-      
+      {user && (
+
+    <div>
       <Navbar />
       <ProfileWrapper>
       <LogoutButton onClick={handleLogout}>Logout</LogoutButton>
@@ -66,6 +68,9 @@ const Profile = () => {
         </ProfileDetails>
       </ProfileContainer>
     </ProfileWrapper>
+    </div>
+      )}
+   
     </div>
   );
 };

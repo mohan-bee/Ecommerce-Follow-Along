@@ -138,10 +138,7 @@ const PriceInfo = styled.p`
   margin-bottom: 10px;
 `;
 
-const Category = styled.p`
-  font-size: 0.9rem;
-  color: #888;
-`;
+
 
 const DeleteButton = styled.button`
   background: #e74c3c;
