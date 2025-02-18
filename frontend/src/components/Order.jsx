@@ -9,29 +9,8 @@ const Order = () => {
   const orderData = location.state?.order;
 
   const navigate = useNavigate();
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState(orderData.products || []);
 
-  useEffect(() => {
-    if (!orderData) return; // Prevent errors if orderData is undefined
-
-    const fetchCart = async () => {
-      try {
-        if (!orderData.cart) return; // Prevent API call if cart is undefined
-
-        const res = await axios.get(`http://localhost:3000/api/cart/${orderData.cart}`, {
-          headers: {
-            Authorization: "Bearer " + sessionStorage.getItem("token"),
-          },
-        });
-
-        setProducts(res.data.cart.products || []);
-      } catch (error) {
-        console.error("Error fetching cart:", error.message);
-      }
-    };
-
-    fetchCart();
-  }, [orderData]); // Re-run when orderData changes
 
   if (!orderData) {
     return (

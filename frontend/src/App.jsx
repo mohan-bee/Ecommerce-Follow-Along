@@ -14,6 +14,7 @@ import SelectAddress from './components/SelectAddress'
 import Order from './components/Order'
 import Payment from './components/Payment'
 import axios from 'axios'
+import MyOrders from './components/MyOrders'
 
 
 
@@ -36,6 +37,7 @@ const App = () => {
       <Route path='/add/address' element={<AddressForm />} />
       <Route path='/select-address' element={<SelectAddress />} />
       <Route path='/order-confirmation' element={<Order />} />
+      <Route path='/my-orders' element={<MyOrders />} />
       <Route path='/payment' element={<Payment />} />
 
     </Routes>

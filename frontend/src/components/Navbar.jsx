@@ -5,7 +5,7 @@ import { FaBars, FaTimes, FaUser } from 'react-icons/fa'
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false)
-
+    const token = sessionStorage.getItem("token")
     const toggleMenu = () => {
         setIsOpen(!isOpen)
     }
@@ -23,7 +23,10 @@ const Navbar = () => {
                 <Link to={'/create'}> <p>Add Product</p> </Link>
                 <Link to={`/my-products`}> <p>My Products</p> </Link>
                 <Link to={'/cart'}> <p>Cart</p> </Link>
-                <Link to={'/profile'} className='profile'><FaUser /></Link>
+                <Link to={'/my-orders'}> <p>My Orders</p> </Link>
+                {token ? (
+                    <Link to={'/profile'} className='profile'><FaUser /></Link>
+                ) : <Link to={'/login'}> <p>Login</p> </Link>}
             </Links>
         </NavbarContainer>
     )
